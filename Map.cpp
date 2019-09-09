@@ -6,7 +6,7 @@ Map::Map()
 {
 	
 
-	ptr_binary_map = NULL;
+	ptr_binary_map = nullptr;
 	_size = 0;
 	printf("Map erstellt!!\n\n");
 	
@@ -15,7 +15,7 @@ Map::Map()
 
 Map::~Map()
 {
-	if(ptr_binary_map != NULL)delete[] ptr_binary_map;
+	if(ptr_binary_map != nullptr)delete[] ptr_binary_map;
 }
 
 
@@ -51,7 +51,7 @@ unsigned int & Map::operator[](unsigned int position)
 
 	if (position < _size) { return ptr_binary_map[position]; }
 
-	//throw std::runtime_error("maparray outs of bounds mein sohn!!!\n");
+	//throw std::runtime_error("maparray outs of bounds!!\n");
 	
 }
 
@@ -69,10 +69,10 @@ Map & Map::operator=(Map  & other)
 		ptr_binary_map[i] = other.ptr_binary_map[i];
 	}
 
-	ptr_texture = other.get_texture();
+	
 	map_height = other.get_height();
 	map_width = other.get_width();
-	tileset_width = other.get_asset_width();
+	
 
 	
 	return *this;
