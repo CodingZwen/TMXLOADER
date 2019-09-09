@@ -18,32 +18,24 @@ Map::~Map()
 	if(ptr_binary_map != NULL)delete[] ptr_binary_map;
 }
 
- sf::Texture*  Map::get_texture()
-{
-	return ptr_texture;
-}
 
-bool Map::initalize_map_from_tmx(std::string & tmxdatei, sf::Texture &_texture, int assetwidth, int x, int y)
+
+bool Map::initalize_map_from_tmx(std::string & tmxdatei, int x, int y)
 {
 
 	TMX_TO_BINARY tmxreader;
 	
-	ptr_texture = &_texture;
-
 	
 
-	//auf grund des viewports mit float zahlen gibt es schwarze linien, glaube ich zumindest?
-	//_texture.setSmooth(true);
-
-	//tmx funktion holt speicher für das array :P
+	//tmx funktion holt speicher fÃ¼r das array achtung
 	//size = anzahl
-     _size=tmxreader.do_all(tmxdatei, ptr_binary_map);
+         _size=tmxreader.do_all(tmxdatei, ptr_binary_map);
 
 	 printf("size: %d   x: %d y: %d x*y: %d\n", _size, x, y, x*y);
 
 	map_width = x;
 	map_height = y;
-	tileset_width = assetwidth;
+	
 	
 	if (_size == (x*y))return true;
 
@@ -55,7 +47,7 @@ bool Map::initalize_map_from_tmx(std::string & tmxdatei, sf::Texture &_texture, 
 
 unsigned int & Map::operator[](unsigned int position)
 {
-	// TODO: hier Rückgabeanweisung eingeben
+	// TODO: hier RÃ¼ckgabeanweisung eingeben
 
 	if (position < _size) { return ptr_binary_map[position]; }
 
@@ -98,7 +90,7 @@ unsigned int Map::second_layer(unsigned int position)
 	//schiebt den mittlerenteil nach rechts
 	unsigned int buffer = ptr_binary_map[position] >> 11;
 
-	//und schneidet dann rest ab, sonst hängt col oder anim bit noch drin
+	//und schneidet dann rest ab, sonst hÃ¤ngt col oder anim bit noch drin
 	return buffer & 2047;
 
 }
@@ -118,7 +110,7 @@ bool Map::animation_tile(unsigned int position)
 	if (position > _size)
 	{
 		printf("achtung array in animationtile map\n");
-		printf("funktion überrtreten!!!\n");
+		printf("funktion Ã¼berrtreten!!!\n");
 		return false;
 	}
 
@@ -136,7 +128,7 @@ bool Map::collision_tile(unsigned int position)
 	if (position > _size)
 	{
 		printf("achtung array in animationtile map\n");
-		printf("funktion überrtreten!!!\npossition: %d\n",position);
+		printf("funktion Ã¼berrtreten!!!\npossition: %d\n",position);
 		return false;
 	}
 
