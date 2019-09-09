@@ -41,13 +41,12 @@ public:
 	 sf::Texture*  get_texture();
 
 	//x,y are tilemapsize -> 40x30 
-	bool initalize_map_from_tmx(std::string &tmxdatei,int assetwidth, int x, int y);
+	bool initalize_map_from_tmx(std::string &tmxdatei, int x, int y);
 
 	//rückgabewert in kacheln, also * 32 = pixel
 	unsigned int get_width()const { return  this->map_width; }
 	unsigned int get_height()const { return this->map_height; }
-	unsigned int get_asset_width()const { return this->tileset_width; }
-
+	
 	unsigned int size() { return _size; }
 	unsigned int &operator[](unsigned int position);
 	Map &operator=(Map  &other);
