@@ -5,8 +5,6 @@
 #include <iostream>
 
 
-//eventuell in static umwandeln wenn ich irgendwann weis
-//wie es genau funktioniert!
 class TMX_TO_BINARY
 {
 public:
@@ -15,8 +13,8 @@ public:
 
 	void read_tmx_file(std::string &dateipfadtmx);
 	bool sort_tmx_file();
-	bool put_digits_in_vectors();//sortiert die tags und kommas aus den tmx string arrays heraus //und sortiertr sie in 4 int vektoren 
-	int  convert_vectors_in_binary_array(unsigned int *&bin_array);
+	bool put_digits_in_vectors();//sortiert die Tags und Kommas aus den Tmx string Arrays heraus //und sortiert sie in 4 int Vektoren. 
+	int  convert_vectors_in_binary_array(unsigned int *&bin_array); //für das array wurd auch speicher geholt, groesse wird returned.
 
 	//die 4 oberen funktionen zusammengefasst, arraygroesse wird returned, aber x und y fehlt sozusagen
 	int do_all(std::string &dateipfadtmx, unsigned int *&bin_array);
