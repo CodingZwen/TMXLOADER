@@ -41,8 +41,8 @@ void TMX_TO_BINARY::read_tmx_file(std::string & dateipfadtmx)
 		if (Quelldatei.good())printf("laden tmx success\n");
 		else printf("tmx laden nicht succes\n");
 
-		std::cout << "string der versucht wurde zu öffnen\n" << dateipfadtmx << "\n";
-		std::cout << "string der versucht wurde zu öffnen\n" << datei << "\n";
+		std::cout << "string der versucht wurde zu Ã¶ffnen\n" << dateipfadtmx << "\n";
+		std::cout << "string der versucht wurde zu Ã¶ffnen\n" << datei << "\n";
 
 		printf("es wurden %d zeilen eingelesen\n",rows);
 		std::cout << "das ist die tmx file:\n" << stmx_file << std::endl;
@@ -73,7 +73,10 @@ bool TMX_TO_BINARY::sort_tmx_file()
 	for (size_t t = 0; t < end; t++) {
 
 		buffer += stmx_file.at(t);
-
+		//wir holen uns somit jedes array aus der tmx  Datei und speichern 
+		//ihn als string in unserem Classen Vektor, allerdings enthaelt 
+		//der string noch den end tag </data> und die  Kommata, diese werden in der Funktion "put_digits_in_vectors" 
+		//aussortiert
 		if (stmx_file.at(t) == '>') {
 			vtmx_all_strings.push_back(buffer);
 
@@ -104,7 +107,7 @@ bool TMX_TO_BINARY::put_digits_in_vectors()
 
 		//einzelner string wird rausgeholt, die arrays sind schon so aufgeteilt
 		//das die zahlenmaps bereits in kompletten strings sind aber noch mit ,
-		//und müssten einzeln rausgeholt werden und in einen int vector gesteckt
+		//und mÃ¼ssten einzeln rausgeholt werden und in einen int vector gesteckt
 		//werden
 		//wir wissen wenn der string ein komma hat, sind wir im array string
 		//siehe z - 152
@@ -124,6 +127,7 @@ bool TMX_TO_BINARY::put_digits_in_vectors()
 					intbuffer += buffer.at(t);
 				}
 
+				//siehe tmx datei, wenn komma oder < dann ist string eine zahl
 				if (buffer.at(t) == ',' || buffer.at(t) == '<') {
 
 					int zahl = std::stoi(intbuffer);
@@ -278,7 +282,7 @@ int * TMX_TO_BINARY::get_binary_maparray()
 		return ptr_binary_map_array;
 	}
 	else {
-		printf("achtung NULL pointer zurückgegeben!\n");
+		printf("achtung NULL pointer zurÃ¼ckgegeben!\n");
 		return nullptr;
 
 	}
